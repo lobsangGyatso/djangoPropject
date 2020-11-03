@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form action="{% url 'sessionPlan' %}" method="post">
+      {% csrf_token %}
+      <br>
+      Session Name <input type="text" name="session_name" value="{{sessionName}}">
+      <br>
+      Session Year <input type="number" name="session_year" value="{{sessionYear}}">
+      <br>
+      Max Credit <input type="number" name="max_credit" value="{{maxCredit}}">
+      <br>
+      session  <input type="text" name="session" value="{{session}}">
+      <input type="submit" name="One" value="Search">
+      <br>
+      Start Date <input type="date" name="startdate">
+      <br>
+      Dead line <input type="date" name="deadline">
+      <table>
+        <tr>
+          <th>Offered</th>
+          <th>Course Code</th>
+          <th>Course Name</th>
+          <th>Credit</th>
+        </tr>
+        <tr>
+          <td>
+            {% for i in courseCode %}
+            <inpu t type="checkbox" name="checkBox" value="{{i}}">
+            <br>
+            {% endfor %}
+          </td>
+          <td>
+            {% for i in courseCode %}
+            <input type="text" name="course_code" value="{{i}}">
+            <br>
+            {% endfor %}
+          </td>
+          <td>{% for i in availableCourse %}
+              <input type="text" name="availableCourse" value="{{i}}">
+              <br>
+          {% endfor %}
+        </td>
+          <td>
+            {% for i in courseCredit %}
+            <input type="text" name="courseCredit" value="{{i}}">
+            <br>
+            {% endfor %}
+          </td>
+        </tr>
+      </table>
+      <input type="submit" name="Two" value="Save">
+    </form>
+    <br>
+  </body>
+</html>
